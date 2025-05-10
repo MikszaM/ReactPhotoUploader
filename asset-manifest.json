@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/ReactPhotoUploader/static/css/main.f855e6bc.css",
-    "main.js": "/ReactPhotoUploader/static/js/main.a3054499.js",
+    "main.js": "/ReactPhotoUploader/static/js/main.e4d0390d.js",
     "static/js/453.ed3810f9.chunk.js": "/ReactPhotoUploader/static/js/453.ed3810f9.chunk.js",
     "index.html": "/ReactPhotoUploader/index.html",
     "main.f855e6bc.css.map": "/ReactPhotoUploader/static/css/main.f855e6bc.css.map",
-    "main.a3054499.js.map": "/ReactPhotoUploader/static/js/main.a3054499.js.map",
+    "main.e4d0390d.js.map": "/ReactPhotoUploader/static/js/main.e4d0390d.js.map",
     "453.ed3810f9.chunk.js.map": "/ReactPhotoUploader/static/js/453.ed3810f9.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f855e6bc.css",
-    "static/js/main.a3054499.js"
+    "static/js/main.e4d0390d.js"
   ]
 }
