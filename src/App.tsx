@@ -1,24 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// App.tsx
+import React, { useEffect, useState } from 'react';
+import ImageUploader from './components/ImageUploader';
 
 function App() {
+  const [codeParam, setCodeParam] = useState<string | null>(null);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    setCodeParam(params.get("code"));
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div style={{ textAlign: 'center', padding: '20px' }}>
+      <h1>Drive Image Uploader</h1>
+      <ImageUploader code={codeParam} />
+
+      {/* Button just below the ImageUploader */}
+      <div style={{ marginTop: '20px' }}>
+        <button
+          onClick={() => window.location.href = 'https://drive.google.com/drive/folders/1lyJMXpiwKXhPx6iv_K99PSG9umRrE6hk'}
+          style={{
+            padding: '10px 20px',
+            fontSize: '16px',
+            borderRadius: '8px',
+            backgroundColor: '#007bff',
+            color: '#fff',
+            border: 'none',
+            cursor: 'pointer'
+          }}
         >
-          Learn React
-        </a>
-      </header>
+          Go to Link
+        </button>
+      </div>
     </div>
   );
 }
