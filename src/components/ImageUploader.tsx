@@ -1,5 +1,4 @@
-// components/ImageUploader.tsx
-import React, { useState, ChangeEvent } from 'react';
+import React, { useRef, useState, ChangeEvent } from 'react';
 
 interface Props {
   code: string | null;
@@ -8,6 +7,8 @@ interface Props {
 export default function ImageUploader({ code }: Props) {
   const [file, setFile] = useState<File | null>(null);
   const [status, setStatus] = useState<string>('');
+  const backCameraInputRef = useRef<HTMLInputElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     const selected = e.target.files?.[0] ?? null;
@@ -17,7 +18,7 @@ export default function ImageUploader({ code }: Props) {
       return;
     }
     setFile(selected);
-    setStatus('');
+    setStatus('Image selected. Ready to upload.');
   };
 
   const handleUpload = async () => {
@@ -30,12 +31,11 @@ export default function ImageUploader({ code }: Props) {
 
     const form = new FormData();
     form.append('file', file);
-    
-    const headers: Record<string,string> = {};
+
+    const headers: Record<string, string> = {};
     if (code) {
       headers['X-Auth-Code'] = code;
     }
-    console.log(headers)
 
     try {
       const res = await fetch('https://weraimati.ddns.net/api/upload', {
@@ -57,10 +57,39 @@ export default function ImageUploader({ code }: Props) {
 
   return (
     <div style={{ maxWidth: 400, margin: '2rem auto', textAlign: 'center' }}>
-      <input type="file" accept="image/*" onChange={handleFileChange} />
+      {/* Hidden native file input */}
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept="image/*"
+        style={{ display: 'none' }}
+        onChange={handleFileChange}
+      />
+      <button onClick={() => fileInputRef.current?.click()}>
+        Choose Image from Device
+      </button>
+
+      {/* Hidden input for back camera capture */}
+      <input
+        ref={backCameraInputRef}
+        type="file"
+        accept="image/*"
+        capture="environment"
+        style={{ display: 'none' }}
+        onChange={handleFileChange}
+      />
+
+      {/* Trigger back camera */}
+      <div style={{ marginTop: '1rem' }}>
+        <button onClick={() => backCameraInputRef.current?.click()}>
+          Take Picture (Back Camera)
+        </button>
+      </div>
+
       <button onClick={handleUpload} style={{ marginTop: '1rem' }}>
         Upload to Backend
       </button>
+
       {status && <p>{status}</p>}
     </div>
   );
