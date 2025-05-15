@@ -13,7 +13,8 @@ function App() {
 
   return (
     <div style={{ textAlign: 'center', padding: '20px' }}>
-      <h1>Drive Image Uploader</h1>
+      <h1>Wieczór Panieński Wery</h1>
+      <h1>Pokaż jak się bawisz!</h1>
 
       {/* Always visible uploader */}
       <ImageUploader code={codeParam} />
@@ -32,13 +33,13 @@ function App() {
             cursor: 'pointer',
           }}
         >
-          {showGallery ? 'Hide Gallery' : 'View Gallery'}
+          {showGallery ? 'Ukryj galerię' : 'Pokaż galerię'}
         </button>
       </div>
 
       {/* Conditionally rendered gallery */}
       {showGallery && (
-        <div style={{ marginTop: '30px' }}>
+        <div style={{ marginTop: '5px' }}>
           <Gallery />
         </div>
       )}

@@ -13,21 +13,21 @@ export default function ImageUploader({ code }: Props) {
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     const selected = e.target.files?.[0] ?? null;
     if (!selected || !selected.type.startsWith('image/')) {
-      setStatus('Please select a valid image.');
+      setStatus('Wybierz poprawny obraz.');
       setFile(null);
       return;
     }
     setFile(selected);
-    setStatus('Image selected. Ready to upload.');
+    setStatus('Obraz wybrany. Gotowy do wysłania.');
   };
 
   const handleUpload = async () => {
     if (!file) {
-      setStatus('No file selected.');
+      setStatus('Nie wybrano pliku.');
       return;
     }
 
-    setStatus('Uploading to backend...');
+    setStatus('Wysyłanie na serwer...');
 
     const form = new FormData();
     form.append('file', file);
@@ -45,19 +45,37 @@ export default function ImageUploader({ code }: Props) {
       });
 
       if (res.ok) {
-        setStatus('Upload successful! The image will be in the gallery soon!');
+        setStatus('Wysłano pomyślnie! Obraz wkrótce pojawi się w galerii!');
       } else {
         const err = await res.json();
-        setStatus(`Upload failed: ${err.message || res.statusText}`);
+        setStatus(`Błąd wysyłania: ${err.message || res.statusText}`);
       }
     } catch (error: any) {
-      setStatus(`Upload error: ${error.message}`);
+      setStatus(`Błąd połączenia: ${error.message}`);
     }
   };
 
+  // Shared style for buttons
+  const buttonStyle: React.CSSProperties = {
+    flex: 1,
+    padding: '24px 16px',
+    fontSize: '18px',
+    borderRadius: '10px',
+    color: '#fff',
+    border: 'none',
+    cursor: 'pointer',
+    minWidth: '140px',
+    height: '120px',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: '8px',
+  };
+
   return (
-    <div style={{ maxWidth: 400, margin: '2rem auto', textAlign: 'center' }}>
-      {/* Hidden native file input */}
+    <div style={{ maxWidth: 200, margin: '2rem auto', textAlign: 'center' }}>
+      {/* Hidden file inputs */}
       <input
         ref={fileInputRef}
         type="file"
@@ -65,11 +83,6 @@ export default function ImageUploader({ code }: Props) {
         style={{ display: 'none' }}
         onChange={handleFileChange}
       />
-      <button onClick={() => fileInputRef.current?.click()}>
-        Choose Image from Device
-      </button>
-
-      {/* Hidden input for back camera capture */}
       <input
         ref={backCameraInputRef}
         type="file"
@@ -79,18 +92,55 @@ export default function ImageUploader({ code }: Props) {
         onChange={handleFileChange}
       />
 
-      {/* Trigger back camera */}
-      <div style={{ marginTop: '1rem' }}>
-        <button onClick={() => backCameraInputRef.current?.click()}>
-          Take Picture (Back Camera)
+      {/* Side-by-side buttons */}
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          gap: '20px',
+          marginBottom: '20px',
+        }}
+      >
+        <button
+          onClick={() => backCameraInputRef.current?.click()}
+          style={{
+            ...buttonStyle,
+            backgroundColor: '#28a745',
+          }}
+        >
+          <span style={{ fontSize: '42px' }}>📷</span>
+          <span>Zrób zdjęcie</span>
+        </button>
+
+        <button
+          onClick={() => fileInputRef.current?.click()}
+          style={{
+            ...buttonStyle,
+            backgroundColor: '#17a2b8',
+          }}
+        >
+          <span style={{ fontSize: '42px' }}>🖼️</span>
+          <span>Wybierz obraz</span>
         </button>
       </div>
 
-      <button onClick={handleUpload} style={{ marginTop: '1rem' }}>
-        Upload to Backend
-      </button>
+      {/* Upload button - now matches others */}
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <button
+          onClick={handleUpload}
+          style={{
+            ...buttonStyle,
+            backgroundColor: '#007bff',
+            maxWidth: 'calc(50% - 10px)',
+          }}
+        >
+          <span style={{ fontSize: '42px' }}>📤</span>
+          <span>Prześlij do galerii</span>
+        </button>
+      </div>
 
-      {status && <p>{status}</p>}
+      {/* Status Message */}
+      {status && <p style={{ marginTop: '1rem' }}>{status}</p>}
     </div>
   );
 }

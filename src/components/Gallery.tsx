@@ -41,7 +41,6 @@ function Gallery() {
           
         }))
       );
-      console.log('Fetched images:', list);
     } catch (error) {
       console.error('Error fetching images:', error);
       setFiles([]);
@@ -73,8 +72,7 @@ function Gallery() {
   }));
 
   return (
-    <div style={{ textAlign: 'center', padding: '20px' }}>
-      <h1>My Drive Gallery</h1>
+    <div style={{ textAlign: 'center', padding: '10px 5px' }}>
       <div style={{ marginBottom: '10px' }}>
         <button
           onClick={fetchImages}
@@ -89,7 +87,7 @@ function Gallery() {
             cursor: loading ? 'not-allowed' : 'pointer',
           }}
         >
-          {loading ? 'Refreshing...' : 'Refresh Gallery'}
+          {loading ? 'Odświeżanie...' : 'Odśwież'}
         </button>
       </div>
 
