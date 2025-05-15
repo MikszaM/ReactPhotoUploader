@@ -22,13 +22,13 @@ function App() {
 }, [showGallery]);
 
   return (
-    <div style={{ textAlign: 'center', padding: '10px 10px', backgroundColor: '#fcf7f0', fontFamily: "'Great Vibes', sans-serif" }}>
+    <div style={{ textAlign: 'center', padding: '10px 10px', backgroundColor: '#fcf7f0', fontFamily: "'Great Vibes', sans-serif", minHeight: '100vh'}}>
       <h1 style={{ fontSize: '2.2rem', padding: '20 20', margin: '0', color: '#8c78b7' }}>Wieczór Panieński Wery</h1>
       <h1 style={{ fontSize: '1.6rem', padding: '10', margin: '0', color: '#8c78b7' }}>Pokaż jak się bawisz!</h1>
 
       <ImageUploader code={codeParam} />
 
-      <div style={{ marginTop: '20px' }}>
+      <div style={{ marginTop: '20px', marginBottom: '20px' }}>
         <button
           onClick={() => setShowGallery((prev) => !prev)}
           style={{
