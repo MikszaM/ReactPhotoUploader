@@ -79,9 +79,11 @@ function Gallery() {
           disabled={loading}
           style={{
             padding: '8px 16px',
-            fontSize: '14px',
+            fontSize: '20px',
+            minWidth: '145px',
             borderRadius: '6px',
-            backgroundColor: '#28a745',
+            fontFamily: "'Great Vibes', sans-serif", 
+            backgroundColor: '#8c78b7',
             color: '#fff',
             border: 'none',
             cursor: loading ? 'not-allowed' : 'pointer',

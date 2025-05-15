@@ -59,13 +59,14 @@ export default function ImageUploader({ code }: Props) {
   const buttonStyle: React.CSSProperties = {
     flex: 1,
     padding: '24px 16px',
-    fontSize: '18px',
+    fontSize: '20px',
     borderRadius: '10px',
     color: '#fff',
     border: 'none',
+    fontFamily: "'Great Vibes', sans-serif", 
     cursor: 'pointer',
-    minWidth: '140px',
-    height: '120px',
+    minWidth: '145px',
+    height: '100px',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -74,7 +75,7 @@ export default function ImageUploader({ code }: Props) {
   };
 
   return (
-    <div style={{ maxWidth: 200, margin: '2rem auto', textAlign: 'center' }}>
+    <div style={{ maxWidth: 120, margin: '0.5rem auto', textAlign: 'center' }}>
       {/* Hidden file inputs */}
       <input
         ref={fileInputRef}
@@ -105,10 +106,10 @@ export default function ImageUploader({ code }: Props) {
           onClick={() => backCameraInputRef.current?.click()}
           style={{
             ...buttonStyle,
-            backgroundColor: '#28a745',
+            backgroundColor: '#8c78b7',
           }}
         >
-          <span style={{ fontSize: '42px' }}>📷</span>
+          <span style={{ fontSize: '36px' }}>📷</span>
           <span>Zrób zdjęcie</span>
         </button>
 
@@ -116,10 +117,10 @@ export default function ImageUploader({ code }: Props) {
           onClick={() => fileInputRef.current?.click()}
           style={{
             ...buttonStyle,
-            backgroundColor: '#17a2b8',
+            backgroundColor: '#8c78b7',
           }}
         >
-          <span style={{ fontSize: '42px' }}>🖼️</span>
+          <span style={{ fontSize: '36px' }}>🖼️</span>
           <span>Wybierz obraz</span>
         </button>
       </div>
@@ -130,11 +131,11 @@ export default function ImageUploader({ code }: Props) {
           onClick={handleUpload}
           style={{
             ...buttonStyle,
-            backgroundColor: '#007bff',
-            maxWidth: 'calc(50% - 10px)',
+            backgroundColor: '#8c78b7',
+            maxWidth: 'calc(80% - 10px)',
           }}
         >
-          <span style={{ fontSize: '42px' }}>📤</span>
+          <span style={{ fontSize: '36px' }}>📤</span>
           <span>Prześlij do galerii</span>
         </button>
       </div>
