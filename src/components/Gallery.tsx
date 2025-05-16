@@ -64,7 +64,7 @@ function Gallery() {
 
   // Lightbox slides
   const slides = files.map(f => ({
-    src: `https://lh3.google.com/u/0/d/${f.id}`,
+    src: `https://www.googleapis.com/drive/v3/files/${f.id}?alt=media&key=${GOOGLE_API_KEY}`,
     width: f.width || 800,
     height: f.height || 600,
     title: f.name,
